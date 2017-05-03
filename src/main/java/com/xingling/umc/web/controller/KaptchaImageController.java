@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
  * @Date 2017/1/6 19:40
  */
 @Controller
-@RequestMapping(value = "/cms/code")
+@RequestMapping(value = "/umc/code")
 public class KaptchaImageController {
 
     @Resource

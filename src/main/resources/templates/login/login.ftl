@@ -28,7 +28,7 @@
       <div class="col-md-3">
         <div class="form-group">
             <span class="input-group-btn-1">
-                <img src="/cms/code/captchaImage" onclick="changeVerifyCode()" id="kaptcha" style="cursor: pointer;">
+                <img src="/umc/code/captchaImage" onclick="changeVerifyCode()" id="kaptcha" style="cursor: pointer;">
                 <a href="javascript:void(0)" onclick="changeVerifyCode()">看不清，换一张</a>
                 </span>
         </div>
@@ -41,6 +41,6 @@
 <script type="text/javascript">
   //点击切换验证码
   function changeVerifyCode() {
-    $("#kaptcha").attr("src", "/cms/code/captchaImage?" + Math.floor(Math.random() * 100));
+    $("#kaptcha").attr("src", "/umc/code/captchaImage?" + Math.floor(Math.random() * 100));
   }
 </script>

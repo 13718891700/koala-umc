@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -27,18 +28,15 @@ public class LoginController {
     /** 视图前缀 */
     private static final String viewPrefix = "sys";
 
-    /**
-     * Go login.jsp
-     * @return
-     */
-    @RequestMapping(value="/login", method=RequestMethod.GET)
-    public String login() {
-        return "/login";
+    @RequestMapping(value = "/login",method = RequestMethod.GET)
+    public ModelAndView login(){
+        ModelAndView modelAndView = new ModelAndView("login/login");
+        return modelAndView;
     }
 
     @RequestMapping(value="/login",method=RequestMethod.POST)
     public String login(HttpServletRequest request, Model model) {
-        String url = viewPrefix + "/index";
+        String url = viewPrefix + "/showBackStage";
         String exceptionClassName = (String)request.getAttribute("shiroLoginFailure");
         String errorMsg = null;
         if(UnknownAccountException.class.getName().equals(exceptionClassName)) {

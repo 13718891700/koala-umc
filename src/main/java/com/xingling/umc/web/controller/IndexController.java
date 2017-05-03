@@ -2,6 +2,9 @@ package com.xingling.umc.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * Created by Liqd on 2017/1/5.
@@ -13,27 +16,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @Date 2017/1/7 22:33
  */
 @Controller
+@RequestMapping("/sys")
 public class IndexController {
 
-    /** 视图前缀 */
-    private static final String viewPrefix = "/sys";
-
-    /**
-     * Go Index
-     * @return
-     */
-    @RequestMapping(value={"", "/", "/index"})
-    public String index() {
-        return viewPrefix + "/index";
+    @RequestMapping("/showBackStage")
+    public ModelAndView loadShowDemo(HttpServletRequest request) throws Exception{
+        return new ModelAndView("backstage/index_admin") ;
     }
 
-    /**
-     * unauthor
-     * @return
-     */
-    @RequestMapping("/unauthorized")
-    public String unauthor() {
-        return viewPrefix + "/unauthorized";
+    @RequestMapping("/showUnauthorized")
+    public ModelAndView loadUnauthorized(HttpServletRequest request) throws Exception{
+        return new ModelAndView("login/unauthorized") ;
+    }
+
+    @RequestMapping("/showLockScreen")
+    public ModelAndView showLockScreen(HttpServletRequest request) throws Exception{
+        return new ModelAndView("backstage/index_lock") ;
     }
 
 }

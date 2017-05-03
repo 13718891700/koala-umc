@@ -153,7 +153,7 @@ public class ShiroConfig {
         chains.put("/static/**", "anon");
         chains.put("/login", "authc");
         chains.put("/unauthorized", "anon");
-        chains.put("/cms/code/captchaImage", "anon");
+        chains.put("/umc/code/captchaImage", "anon");
         chains.put("/logout", "logout");
         chains.put("/**", "user");
         bean.setFilterChainDefinitionMap(chains);
