@@ -1,0 +1,114 @@
+.header{
+    width:100%;
+    position: relative;
+    height:550px;
+    overflow: hidden;
+    background:#000;
+}
+.header .bgp1{
+    width:1920px;
+    position: absolute;
+    left:50%;
+    margin-left: -960px;
+    top:0px;
+    height:550px;
+    background-image:url("../../img/banner1111.jpg");
+}
+.header .bgp2{
+    position: absolute;
+    left:50%;
+    margin-left: -424.5px;
+    top:170px;
+    background: url("../../img/bannertxt.png");
+    width:849px;
+    height:188px;
+}
+.header .bgp3{
+    position: absolute;
+    left:50%;
+    top:0px;
+    margin-left:-960px;
+    background: url("../../img/guang.png");
+    width:1920px;
+    height:550px;
+    clip:rect(0px,0px,550px,0px);
+    transition:all 3s linear;
+}
+.header .light{
+    clip: rect(0px,1920px,550px,0px);
+}
+.header .dark{
+    clip: rect(0px,1920px,550px,1920px);
+}
+.header .dl{
+    clip: rect(0px,1920px,550px,0px);
+}
+.header .ld{
+    clip: rect(0px,0px,550px,0px);
+}
+.header .bgp4{
+    position: absolute;
+    left:50%;
+    margin-left:-790px;
+    top:186px;
+    background:url("../../img/1.png");
+    width:226px;
+    height:102px;
+    display: none;
+}
+.header .bgp5{
+    position: absolute;
+    left:50%;
+    margin-left:-574px;
+    top:309px;
+    background:url("../../img/2.png");
+    width:270px;
+    height:158px;
+    display: none;
+}
+.header .bgp6{
+    position: absolute;
+    left:50%;
+    margin-left:-105px;
+    top:410px;
+    background:url("../../img/3.png");
+    width:141px;
+    height:134px;
+    display: none;
+}
+.header .bgp7{
+    position: absolute;
+    left:50%;
+    margin-left:-725px;
+    top:305px;
+    background:url("../../img/7.png");
+    width:115px;
+    height:98px;
+    display: none;
+    opacity: 0.1;
+}
+@media (max-width: 960px){
+    .header{
+        width:960px;
+    }
+}
+
+#line,#area,#bar,#pie,#scatter,#column{
+    float:left;width: 305px;height: 180px;
+    border:1px solid #4cadd8;
+}
+
+
+.mapTipText{width: 280px;height: 110px;background-color: #ffffff;}
+.mapTipText .mapTipImg{height: 66px; width: 66px; float: left;border: 2px solid #ffffff; border-radius: 50%;overflow: hidden;margin: -12px 5px 0 -12px;}
+.mapTipText .mapTipImg img{width: 100%;height: 100%;}
+.mapTipText .mapTipList{float: left;margin-left: 4px;position: relative; z-index: 300;}
+.mapTipText .mapTipList h2{text-align: left;}
+.mapTipText .mapTipList h2 a{font-size: 24px; color: #262626;text-decoration:none;}
+.mapTipText .mapTipList h2 a:hover{ color: #0085d2;}
+.mapTipText .mapTipList h2 a span{font-size: 16px;margin-left: 3px;}
+.mapTipText .mapTipList ul{ width: 203px;padding-right: 10px;position: relative;z-index: 200;}
+.mapTipText .mapTipList ul li{list-style: none;float: left;padding: 5px 3px 0 3px;width: 100%;}
+.mapTipText .mapTipList ul li span{list-style: none;float: left;padding: 5px 2px 0 3px;width: 30%;}
+.mapTipText .mapTipList ul li a{color: #262626;text-decoration:none;}
+.mapTipText .mapTipList ul li a:hover{background-color:#2ebcfe;color:#ffffff;}
