@@ -1,4 +1,5 @@
 package com.xingling.umc.security.shiro;
+
 import com.xingling.umc.utils.cache.CacheHandler;
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

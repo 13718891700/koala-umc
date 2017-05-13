@@ -1,8 +1,8 @@
 package com.xingling.umc.config;
 
 import com.google.common.collect.Maps;
-import com.xingling.umc.security.session.ShiroRedisCacheManager;
 import com.xingling.umc.security.session.SessionFactory;
+import com.xingling.umc.security.session.ShiroRedisCacheManager;
 import com.xingling.umc.security.shiro.*;
 import org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
@@ -16,6 +16,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.Primary;
+import org.springframework.data.redis.connection.RedisConnectionFactory;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
 import javax.annotation.Resource;
@@ -38,6 +42,7 @@ public class ShiroConfig {
 
     @Resource
     private RedisTemplate<byte[], Object> redisTemplate;
+
 
     //开启Shiro Spring AOP 权限注解的支持
     @Bean
@@ -103,9 +108,6 @@ public class ShiroConfig {
         //定时清理失效会话, 清理用户直接关闭浏览器造成的孤立会话
         sessionManager.setSessionValidationInterval(120000);
         sessionManager.setSessionValidationSchedulerEnabled(true);
-        //Collection<SessionListener> listenerCollection = Lists.newArrayList();
-        //listenerCollection.add(sessionListener());
-        //sessionManager.setSessionListeners(listenerCollection);
         sessionManager.setSessionFactory(sessionFactory());
         return sessionManager;
     }
@@ -115,13 +117,6 @@ public class ShiroConfig {
     public JavaUuidSessionIdGenerator sessionIdGenerator(){
         return new JavaUuidSessionIdGenerator();
     }
-
-
-    /*//监听session
-    @Bean(name="sessionListener")
-    public ShiroSessionListener sessionListener(){
-        return new ShiroSessionListener();
-    }*/
 
     @Bean(name="sessionFactory")
     public SessionFactory sessionFactory(){
