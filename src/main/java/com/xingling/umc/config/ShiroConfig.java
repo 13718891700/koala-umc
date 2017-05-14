@@ -42,7 +42,6 @@ public class ShiroConfig {
 
 	private static Logger logger = LoggerFactory.getLogger(ShiroConfig.class);
 
-
 	//开启Shiro Spring AOP 权限注解的支持
 	@Bean
 	public DefaultAdvisorAutoProxyCreator getDefaultAdvisorAutoProxyCreator() {
@@ -172,7 +171,7 @@ public class ShiroConfig {
 	@Bean(name="connectionFactory")
 	public JedisConnectionFactory connectionFactory(){
 		JedisConnectionFactory conn = new JedisConnectionFactory();
-		conn.setDatabase(1);
+		conn.setDatabase(0);
 		conn.setHostName("127.0.0.1");
 		conn.setPassword("");
 		conn.setPort(6379);
