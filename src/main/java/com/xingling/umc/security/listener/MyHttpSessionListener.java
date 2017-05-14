@@ -9,12 +9,12 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
 /**
- * <p>Title:	  MyHttpSessionListener <br/> </p>
- * <p>Description 自定义Session监听器 <br/> </p>
- * <p>Company:    http://www.hnxianyi.com  <br/> </p>
+ * <p>Title:	  MyHttpSessionListener. </p>
+ * <p>Description 自定义Session监听器 </p>
+ * <p>Company:    http://www.hnxianyi.com </p>
  *
- * @Author <a href="liu_zhaoming@sina.cn"/>刘兆明</a>  <br/>
- * @Date 2016/12/19 19:58
+ * @Author         <a href="190332447@qq.com"/>杨文生</a>
+ * @CreateDate     2017/5/14 12:52
  */
 @WebListener
 public class MyHttpSessionListener implements HttpSessionListener {

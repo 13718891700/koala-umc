@@ -7,18 +7,20 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
+import javax.annotation.Resource;
+
 /**
- * <p>Title:	  MyCorsConfiguration <br/> </p>
- * <p>Description 跨域配置 <br/> </p>
- * <p>Company:    http://www.hnxianyi.com  <br/> </p>
+ * <p>Title:	  MyCorsConfiguration. </p>
+ * <p>Description 跨域配置 </p>
+ * <p>Company:    http://www.hnxianyi.com </p>
  *
- * @Author <a href="liu_zhaoming@sina.cn"/>刘兆明</a>  <br/>
- * @Date 2016/12/26 20:49
+ * @Author         <a href="190332447@qq.com"/>杨文生</a>
+ * @CreateDate     2017/5/14 10:37
  */
 @Configuration
 public class MyCorsConfiguration {
 
-    @Autowired
+    @Resource
     private RestConfig restConfig;
 
     @Bean

@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Configuration;
 import java.util.Properties;
 
 /**
- * <p>Title:	  xescm-cms <br/> </p>
- * <p>Description TODO <br/> </p>
+ * <p>Title:	  xinglinglove <br/> </p>
+ * <p>Description 验证码配置类 <br/> </p>
  * <p>Company:    http://www.hnxianyi.com  <br/> </p>
  *
  * @Author <a href="190332447@qq.com"/>杨文生</a>  <br/>
