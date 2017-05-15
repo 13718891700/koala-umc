@@ -22,9 +22,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
+import org.springframework.boot.bind.RelaxedPropertyResolver;
+import org.springframework.context.EnvironmentAware;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.core.env.Environment;
 import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 
@@ -38,9 +41,15 @@ import java.util.Map;
  */
 
 @Configuration
-public class ShiroConfig {
+public class ShiroConfig implements EnvironmentAware{
 
 	private static Logger logger = LoggerFactory.getLogger(ShiroConfig.class);
+
+	private RelaxedPropertyResolver propertyResolver;
+
+	public void setEnvironment(Environment env) {
+		this.propertyResolver = new RelaxedPropertyResolver(env, "spring.redis.");
+	}
 
 	//开启Shiro Spring AOP 权限注解的支持
 	@Bean
@@ -171,11 +180,11 @@ public class ShiroConfig {
 	@Bean(name="connectionFactory")
 	public JedisConnectionFactory connectionFactory(){
 		JedisConnectionFactory conn = new JedisConnectionFactory();
-		conn.setDatabase(0);
-		conn.setHostName("127.0.0.1");
-		conn.setPassword("");
-		conn.setPort(6379);
-		conn.setTimeout(0);
+		conn.setDatabase(Integer.valueOf(propertyResolver.getProperty("database")));
+		conn.setHostName(propertyResolver.getProperty("host"));
+		conn.setPassword(propertyResolver.getProperty("password"));
+		conn.setPort(Integer.valueOf(propertyResolver.getProperty("port")));
+		conn.setTimeout(Integer.valueOf(propertyResolver.getProperty("timeout")));
 		return conn;
 	}
 
@@ -195,5 +204,4 @@ public class ShiroConfig {
 		ShiroRedisCacheManager cacheManager = new ShiroRedisCacheManager(redisTemplate());
 		return cacheManager;
 	}
-
 }

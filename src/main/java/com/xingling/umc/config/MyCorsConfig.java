@@ -18,7 +18,7 @@ import javax.annotation.Resource;
  * @CreateDate     2017/5/14 10:37
  */
 @Configuration
-public class MyCorsConfiguration {
+public class MyCorsConfig {
 
     @Resource
     private RestConfig restConfig;

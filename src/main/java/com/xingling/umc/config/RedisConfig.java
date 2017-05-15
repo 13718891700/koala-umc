@@ -11,7 +11,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
 
 /**
  * <p>Title:	  RedisConfig. </p>
- * <p>Description TODO </p>
+ * <p>Description redis配置 </p>
  * <p>Company:    http://www.hnxianyi.com </p>
  *
  * @Author         <a href="190332447@qq.com"/>杨文生</a>
@@ -19,7 +19,7 @@ import org.springframework.session.data.redis.config.annotation.web.http.EnableR
  */
 @Configuration
 @EnableCaching
-@EnableRedisHttpSession(maxInactiveIntervalInSeconds =7200)
+@EnableRedisHttpSession
 public class RedisConfig extends CachingConfigurerSupport {
 	
 	private static Logger logger = LoggerFactory.getLogger(RedisConfig.class);

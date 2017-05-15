@@ -13,7 +13,7 @@ public class RestConfig {
 
 
     /**
-     * 订单中心的URL地址
+     * 用户中心的URL地址
      */
     private String umc;
 }
