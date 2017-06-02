@@ -7,7 +7,7 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 
 @SpringBootApplication
 @ServletComponentScan
-@MapperScan("com.xingling.umc.*.mapper")
+@MapperScan("com.xingling.umc.mapper")
 public class UmcApplication {
 
 	public static void main(String[] args) {

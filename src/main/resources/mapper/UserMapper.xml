@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.xingling.umc.mapper.UserMapper" >
+    <resultMap id="BaseResultMap" type="com.xingling.umc.model.User" >
+        <id column="id" property="id" jdbcType="VARCHAR" />
+        <result column="user_name" property="userName" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="real_name" property="realName" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" jdbcType="CHAR" />
+        <result column="age" property="age" jdbcType="INTEGER" />
+        <result column="birthday" property="birthday" jdbcType="DATE" />
+        <result column="cell_phone" property="cellPhone" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="city" property="city" jdbcType="VARCHAR" />
+        <result column="country" property="country" jdbcType="VARCHAR" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="salt" property="salt" jdbcType="VARCHAR" />
+        <result column="last_login_date" property="lastLoginDate" jdbcType="DATE" />
+        <result column="create_time" property="createTime" jdbcType="DATE" />
+        <result column="creator" property="creator" jdbcType="VARCHAR" />
+        <result column="update_time" property="updateTime" jdbcType="DATE" />
+        <result column="updater" property="updater" jdbcType="VARCHAR" />
+        <result column="del" property="del" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        id, user_name, password, real_name, sex, age, birthday, cell_phone, email, address,
+        country, status, salt, last_login_date, create_time, creator, update_time, updater,
+        del,city
+    </sql>
+</mapper>

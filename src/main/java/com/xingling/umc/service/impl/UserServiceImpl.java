@@ -1,5 +1,7 @@
 package com.xingling.umc.service.impl;
 
+import com.xingling.service.impl.BaseServiceImpl;
+import com.xingling.umc.model.User;
 import com.xingling.umc.service.UserService;
 import org.springframework.stereotype.Service;
 
@@ -12,5 +14,5 @@ import org.springframework.stereotype.Service;
  * @Date 2017/5/15 13:50
  */
 @Service
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl extends BaseServiceImpl<User> implements UserService{
 }

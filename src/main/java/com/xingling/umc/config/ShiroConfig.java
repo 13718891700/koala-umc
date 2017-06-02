@@ -143,6 +143,7 @@ public class ShiroConfig implements EnvironmentAware{
 		chains.put("/static/**", "anon");
 		chains.put("/login", "authc");
 		chains.put("/unauthorized", "anon");
+		chains.put("/umc/user/queryUserListWithPage", "anon");
 		chains.put("/umc/code/captchaImage", "anon");
 		chains.put("/logout", "logout");
 		chains.put("/**", "user");

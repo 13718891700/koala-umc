@@ -1,5 +1,8 @@
 package com.xingling.umc.service;
 
+import com.xingling.service.BaseService;
+import com.xingling.umc.model.User;
+
 /**
  * <p>Title:	  koala-umc <br/> </p>
  * <p>Description TODO <br/> </p>
@@ -8,5 +11,5 @@ package com.xingling.umc.service;
  * @Author <a href="190332447@qq.com"/>杨文生</a>  <br/>
  * @Date 2017/5/15 13:49
  */
-public interface UserService {
+public interface UserService extends BaseService<User> {
 }
