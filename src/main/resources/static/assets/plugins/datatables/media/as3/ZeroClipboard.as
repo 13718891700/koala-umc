@@ -1,5 +1,5 @@
 ﻿/* Compile using: mxmlc --target-player=10.0.0 ZeroClipboard.as */
-package static.assets.plugins.datatables.media.as3 static.assets.plugins.datatables.media.as3 static.assets.plugins.datatables.media.as3 {
+package {
 	import flash.display.Stage;
 	import flash.display.Sprite;
 	import flash.display.LoaderInfo;

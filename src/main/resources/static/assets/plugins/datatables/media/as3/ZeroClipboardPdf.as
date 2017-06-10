@@ -1,5 +1,5 @@
 ﻿/* Compile using: mxmlc --target-player=10.0.0 -static-link-runtime-shared-libraries=true -library-path+=lib ZeroClipboardPdf.as */
-package static.assets.plugins.datatables.media.as3 static.assets.plugins.datatables.media.as3 static.assets.plugins.datatables.media.as3 {
+package {
 	import flash.display.Stage;
 	import flash.display.Sprite;
 	import flash.display.LoaderInfo;
@@ -28,7 +28,7 @@ package static.assets.plugins.datatables.media.as3 static.assets.plugins.datatab
 	import org.alivepdf.fonts.CoreFont;
 	import org.alivepdf.colors.RGBColor;
  
-	public class ZeroClipboardPdf extends Sprite {
+	public class ZeroClipboard extends Sprite {
 		
 		private var domId:String = '';
 		private var button:Sprite;
@@ -39,7 +39,7 @@ package static.assets.plugins.datatables.media.as3 static.assets.plugins.datatab
 		private var charSet:String = 'utf8';
 		
 		
-		public function ZeroClipboardPdf() {
+		public function ZeroClipboard() {
 			// constructor, setup event listeners and external interfaces
 			stage.scaleMode = StageScaleMode.EXACT_FIT;
 			flash.system.Security.allowDomain("*");

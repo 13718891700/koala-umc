@@ -55,9 +55,9 @@ public class LoginController {
             boolean jcaptchaEbabled = true;
             model.addAttribute("jcaptchaEbabled",jcaptchaEbabled);
             model.addAttribute("loginError",errorMsg);
-            return "/login";
+            return "redirect:/login";
         }
-        return url;
+        return "redirect:/showBackStage";
     }
 
 

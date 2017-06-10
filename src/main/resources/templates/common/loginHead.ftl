@@ -12,6 +12,6 @@
 <link href="../../assets/css/themes/default.css" rel="stylesheet" type="text/css" id="style_color"/>
 <link href="../../assets/css/pages/login-soft.css" rel="stylesheet" type="text/css"/>
 <link rel="stylesheet" href="/assets/plugins/bootstrapvalidator/dist/css/bootstrapValidator.css" />
-<link href="../../assets/plugins/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen">
-<link rel="stylesheet" type="text/css" href="../../assets/plugins/sweetalert/sweetalert.css">
+<link href="../../assets/plugins/bootstrap-datetimepicker-master/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen"/>
+<link rel="stylesheet" type="text/css" href="../../assets/plugins/sweetalert/sweetalert.css"/>
 <title>登陆页面</title>

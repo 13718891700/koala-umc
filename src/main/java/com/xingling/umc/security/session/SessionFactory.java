@@ -24,7 +24,7 @@ public class SessionFactory implements org.apache.shiro.session.mgt.SessionFacto
 			HttpServletRequest request = (HttpServletRequest) sessionContext.getServletRequest();
 			if (request != null) {
 				session.setHost(StringUtils.getRemoteAddr(request));
-				session.setUserAgent(request.getHeader("User-Agent"));
+				session.setUserAgent(request.getHeader("UmcUser-Agent"));
 				session.setSystemHost(request.getLocalAddr() + ":" + request.getLocalPort());
 			}
 		}

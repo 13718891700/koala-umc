@@ -17,7 +17,7 @@ import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSource
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.filter.authc.AnonymousFilter;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
-import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
+import org.apache.shiro.web.session.mgt.ServletContainerSessionManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator;
@@ -68,9 +68,13 @@ public class ShiroConfig implements EnvironmentAware{
 
 
 	@Bean(name="securityRealm")
-	public SecurityRealm securityRealm(ShiroRedisCacheManager cacheManager) {
+	public SecurityRealm securityRealm() {
 		SecurityRealm userRealm = new SecurityRealm();
-		userRealm.setCredentialsMatcher(credentialsMatcher(cacheManager));
+		userRealm.setCredentialsMatcher(credentialsMatcher());
+//		userRealm.setCacheManager(redisCacheManager());
+//		userRealm.setCachingEnabled(true);
+//		userRealm.setAuthenticationCachingEnabled(true);
+//		userRealm.setAuthorizationCachingEnabled(true);
 		return userRealm;
 	}
 	
@@ -89,21 +93,23 @@ public class ShiroConfig implements EnvironmentAware{
 		DefaultWebSecurityManager manager = new DefaultWebSecurityManager();
 		manager.setRealm(securityRealm);
 		manager.setSessionManager(sessionManager());
-		manager.setCacheManager(redisCacheManager());
+//		manager.setCacheManager(redisCacheManager());
 		return manager;
 	}
 
-	//会话管理器
-	@Bean(name="sessionManager")
-	public DefaultWebSessionManager sessionManager(){
-		DefaultWebSessionManager sessionManager = new DefaultWebSessionManager();
-		sessionManager.setCacheManager(redisCacheManager());
-		sessionManager.setGlobalSessionTimeout(1800000);
-		sessionManager.setDeleteInvalidSessions(true);
-		//定时清理失效会话, 清理用户直接关闭浏览器造成的孤立会话
-		sessionManager.setSessionValidationInterval(120000);
-		sessionManager.setSessionValidationSchedulerEnabled(true);
-		sessionManager.setSessionFactory(sessionFactory());
+
+	/**
+	 * <p>Title:	  sessionManager. </p>
+	 * <p>Description 会话管理器</p>
+	 *
+	 * @param
+	 * @Author        <a href="190332447@qq.com"/>杨文生</a>
+	 * @CreateDate    2017/6/3 19:45
+	 * @return
+	 */
+	@Bean(name = "sessionManager")
+	public ServletContainerSessionManager sessionManager() {
+		ServletContainerSessionManager sessionManager = new ServletContainerSessionManager();
 		return sessionManager;
 	}
 
@@ -133,18 +139,22 @@ public class ShiroConfig implements EnvironmentAware{
 
 		Map<String, Filter>filters = Maps.newHashMap();
 		filters.put("anon", new AnonymousFilter());
-		filters.put("authc",formAuthenticationFilter());
+		filters.put("authc",new CaptchaFormAuthenticationFilter());
 		filters.put("user", new UserFilter());
 		filters.put("logout", new LogoutFilter());
 		filters.put("anyRoles", new AnyRolesFilter());
 		bean.setFilters(filters);
 
 		Map<String, String> chains = Maps.newHashMap();
-		chains.put("/static/**", "anon");
+		chains.put("/assets/**", "anon");
+		chains.put("/css/**", "anon");
+		chains.put("/img/**", "anon");
+		chains.put("/js/**", "anon");
+		chains.put("/swagger-ui.html", "anon");
 		chains.put("/login", "authc");
 		chains.put("/unauthorized", "anon");
 		chains.put("/umc/user/queryUserListWithPage", "anon");
-		chains.put("/umc/code/captchaImage", "anon");
+		chains.put("/umc/captcha/**", "anon");
 		chains.put("/logout", "logout");
 		chains.put("/**", "user");
 		bean.setFilterChainDefinitionMap(chains);
@@ -155,11 +165,11 @@ public class ShiroConfig implements EnvironmentAware{
 	@Bean(name = "credentialsMatcher")
 	@ConditionalOnMissingBean
 	@DependsOn("cacheManager")
-	public CredentialsMatcher credentialsMatcher(ShiroRedisCacheManager cacheManager) {
-		RetryLimitHashedCredentialsMatcher credentialsMatcher = new RetryLimitHashedCredentialsMatcher(cacheManager);
+	public CredentialsMatcher credentialsMatcher() {
+		RetryLimitHashedCredentialsMatcher credentialsMatcher = new RetryLimitHashedCredentialsMatcher();
 		credentialsMatcher.setRetryMax(5);
 		credentialsMatcher.setHashAlgorithmName("md5");
-		credentialsMatcher.setHashIterations(1024);
+		credentialsMatcher.setHashIterations(2);
 		credentialsMatcher.setStoredCredentialsHexEncoded(true);
 		return credentialsMatcher;
 	}
@@ -196,7 +206,6 @@ public class ShiroConfig implements EnvironmentAware{
 		template.setConnectionFactory(connectionFactory());
 		return template;
 	}
-
 
 
 	//会话缓存管理器

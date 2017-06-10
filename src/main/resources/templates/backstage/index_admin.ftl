@@ -49,10 +49,10 @@
 								<a href="javascript:;" id="trigger_fullscreen"><i class="fa fa-move"></i>全屏</a>
 							</li>
 							<li>
-								<a href="${xl }/sys/showLockScreen"><i class="fa fa-lock"></i>锁屏</a>
+								<a href="/sys/showLockScreen"><i class="fa fa-lock"></i>锁屏</a>
 							</li>
 							<li>
-								<a href="${xl }/logout"><i class="fa fa-key"></i>注销登录</a>
+								<a href="/logout"><i class="fa fa-key"></i>注销登录</a>
 							</li>
 						</ul>
 					</li>
@@ -395,7 +395,7 @@
 		    var pageY = event.pageY;
 		    var arr = $(".panel-custom");
 		    num++;  
-		    var box = "<img src='/images/star.png' id='ball"+num+"' style='position:absolute;top:"+(pageY+10)+"px;left:"+(pageX+10)+"px;border-radius:5px;width:15px;height:15px'/>";
+		    var box = "<img src='/img/star.png' id='ball"+num+"' style='position:absolute;top:"+(pageY+10)+"px;left:"+(pageX+10)+"px;border-radius:5px;width:15px;height:15px'/>";
 		    $("body").append(box);    
 		    $("#ball"+num).animate({width:"0px",height:"0px"},1000,function(){       
 		       $("#ball"+num).remove();

@@ -1,19 +1,19 @@
 package com.xingling.umc.security.filter;
 
-import com.google.code.kaptcha.Constants;
 import com.xingling.umc.security.core.CaptchaAuthenticationToken;
 import com.xingling.umc.security.exception.IncorrectCaptchaException;
+import com.xingling.umc.security.utils.PasswordCacheUtils;
+import com.xingling.util.CookieUtil;
 import com.xingling.util.ValidatorUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.cache.Cache;
-import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
 import org.apache.shiro.web.util.WebUtils;
+import org.springframework.data.redis.core.RedisTemplate;
 
+import javax.annotation.Resource;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
@@ -21,13 +21,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class CaptchaFormAuthenticationFilter extends FormAuthenticationFilter {
 
-    private Cache<String, AtomicInteger> passwordRetryCache;
+
+	@Resource
+	private RedisTemplate redisTemplate;
 
     public CaptchaFormAuthenticationFilter() {
-    }
-
-    public CaptchaFormAuthenticationFilter(CacheManager cacheManager) {
-        passwordRetryCache = cacheManager.getCache("passwordRetryCache");
     }
 
     public static final String DEFAULT_CAPTCHA_PARAM = "kaptcha";
@@ -90,8 +88,7 @@ public class CaptchaFormAuthenticationFilter extends FormAuthenticationFilter {
     protected boolean executeLogin(ServletRequest request, ServletResponse response) throws Exception {
         CaptchaAuthenticationToken token = (CaptchaAuthenticationToken) createToken(request, response);
         try {
-
-            AtomicInteger retryCount = passwordRetryCache.get((String) token.getPrincipal());
+            AtomicInteger retryCount = PasswordCacheUtils.getPasswordRetryInfo((String) token.getPrincipal());
             if (retryCount != null && retryCount.get() > 0) {
                 //1、设置验证码是否开启属性，页面可以根据该属性来决定是否显示验证码
                 //request.setAttribute("jcaptchaEbabled", jcaptchaEbabled);
@@ -112,11 +109,15 @@ public class CaptchaFormAuthenticationFilter extends FormAuthenticationFilter {
 
     // 验证码校验
     protected void doCaptchaValidate(HttpServletRequest request, CaptchaAuthenticationToken token) {
-        String kaptcha = (String) SecurityUtils.getSubject().getSession().getAttribute(Constants.KAPTCHA_SESSION_KEY);
+	    String captchaCode = CookieUtil.findCookie("captchaCode",request);
+	    //redis中查询验证码
+	    String kaptcha = redisTemplate.opsForValue().get(captchaCode).toString();
         if (StringUtils.isEmpty(token.getKaptcha()) || !token.getKaptcha().equalsIgnoreCase(kaptcha)) {
             //定义IncorrectCaptchaException，shiro显示Exception class name作为error信息
             throw new IncorrectCaptchaException("验证码错误！");
         }
+	    //验证码匹配成功，redis则删除对应的验证码
+	    redisTemplate.delete(captchaCode);
     }
 
     @Override

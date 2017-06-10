@@ -31,6 +31,9 @@
         <mapper.version>3.3.9</mapper.version>
         <shiro.version>1.2.3</shiro.version>
         <docker.image.prefix>xinglinglove</docker.image.prefix>
+        <shiro-redis.version>2.4.2.1-RELEASE</shiro-redis.version>
+        <springfoxVersion>2.4.0</springfoxVersion>
+        <swagger2CoreVersion>1.5.8</swagger2CoreVersion>
     </properties>
 
     <dependencies>
@@ -159,7 +162,38 @@
             <version>1.0</version>
         </dependency>
         <!-- verificationCode end -->
-
+        <!-- https://mvnrepository.com/artifact/org.crazycake/shiro-redis -->
+        <dependency>
+            <groupId>org.crazycake</groupId>
+            <artifactId>shiro-redis</artifactId>
+            <version>${shiro-redis.version}</version>
+        </dependency>
+        <!-- swagger-springmvc start -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfoxVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfoxVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-staticdocs</artifactId>
+            <version>${springfoxVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-annotations</artifactId>
+            <version>${swagger2CoreVersion}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.swagger</groupId>
+            <artifactId>swagger-models</artifactId>
+            <version>${swagger2CoreVersion}</version>
+        </dependency>
     </dependencies>
 
     <build>

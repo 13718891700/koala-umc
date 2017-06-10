@@ -1,12 +1,15 @@
 package com.xingling.umc.security.core;
 
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
+import com.xingling.umc.model.domain.UmcUser;
+import com.xingling.umc.service.UserService;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
+import org.apache.shiro.util.ByteSource;
+
+import javax.annotation.Resource;
 
 /**
  * <p>Title:	  SecurityRealm. </p>
@@ -17,6 +20,9 @@ import org.apache.shiro.subject.PrincipalCollection;
  * @CreateDate     2017/1/6 18:07
  */
 public class SecurityRealm extends AuthorizingRealm{
+
+	@Resource
+	private UserService userService;
 	
 	/**
 	 * 认证回调函数, 登录时调用
@@ -25,18 +31,16 @@ public class SecurityRealm extends AuthorizingRealm{
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authcToken) throws AuthenticationException{
 		CaptchaAuthenticationToken token = (CaptchaAuthenticationToken) authcToken;
 	   // 校验用户名密码
-	   /*User user = null;
-		try {
-            user = userService.getUserByUserName(token.getUsername());
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		UmcUser user = userService.selectUserByUserName(token.getUsername());
+		/*UmcUser umcUser = new UmcUser();
+		umcUser.setUserName(token.getUsername());
+		UmcUser user = userService.selectOne(umcUser);*/
 		if(user == null){
 			throw new UnknownAccountException("用户名不存在!");
 		}
 		//交给AuthenticatingRealm使用CredentialsMatcher进行密码匹配，如果觉得人家的不好可以自定义实现
-		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user.getUserName(),user.getPassword(),ByteSource.Util.bytes(user.getSalt()),getName());*/
-        return null;
+		SimpleAuthenticationInfo authenticationInfo = new SimpleAuthenticationInfo(user.getUserName(),user.getPassword(), ByteSource.Util.bytes(user.getSalt()),getName());
+        return authenticationInfo;
 	}
 
 	@Override

@@ -1,9 +1,12 @@
 package com.xingling.umc.service.impl;
 
 import com.xingling.service.impl.BaseServiceImpl;
-import com.xingling.umc.model.User;
+import com.xingling.umc.mapper.UserMapper;
+import com.xingling.umc.model.domain.UmcUser;
 import com.xingling.umc.service.UserService;
 import org.springframework.stereotype.Service;
+
+import javax.annotation.Resource;
 
 /**
  * <p>Title:	  koala-umc <br/> </p>
@@ -14,5 +17,13 @@ import org.springframework.stereotype.Service;
  * @Date 2017/5/15 13:50
  */
 @Service
-public class UserServiceImpl extends BaseServiceImpl<User> implements UserService{
+public class UserServiceImpl extends BaseServiceImpl<UmcUser> implements UserService{
+
+	@Resource
+	private UserMapper userMapper;
+
+	@Override
+	public UmcUser selectUserByUserName(String username) {
+		return userMapper.selectUserByUserName(username);
+	}
 }
