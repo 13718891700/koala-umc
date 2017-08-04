@@ -11,6 +11,8 @@ import java.util.Date;
 @Table(name = "xl_user")
 public class UmcUser extends BaseEntiy{
 
+
+
 	/**
 	 * 用户名
 	 */

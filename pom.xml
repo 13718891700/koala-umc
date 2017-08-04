@@ -34,9 +34,21 @@
         <shiro-redis.version>2.4.2.1-RELEASE</shiro-redis.version>
         <springfoxVersion>2.4.0</springfoxVersion>
         <swagger2CoreVersion>1.5.8</swagger2CoreVersion>
+        <rocketmq.version>4.0.0-incubating</rocketmq.version>
     </properties>
 
     <dependencies>
+        <!-- RocketMq客户端相关依赖 -->
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-client</artifactId>
+            <version>${rocketmq.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.rocketmq</groupId>
+            <artifactId>rocketmq-common</artifactId>
+            <version>${rocketmq.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.springframework.session</groupId>
             <artifactId>spring-session</artifactId>
@@ -224,6 +236,14 @@
                             <include>${project.build.finalName}.jar</include>
                         </resource>
                     </resources>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
                 </configuration>
             </plugin>
         </plugins>
