@@ -35,6 +35,7 @@
         <springfoxVersion>2.4.0</springfoxVersion>
         <swagger2CoreVersion>1.5.8</swagger2CoreVersion>
         <rocketmq.version>4.0.0-incubating</rocketmq.version>
+        <findbugs-maven-plugin.version>3.0.4</findbugs-maven-plugin.version>
     </properties>
 
     <dependencies>
@@ -297,6 +298,33 @@
                 <activeByDefault>false</activeByDefault>
             </activation>
         </profile>
+        <profile>
+            <id>findbugs</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>findbugs-maven-plugin</artifactId>
+                        <version>${findbugs-maven-plugin.version}</version>
+                        <configuration>
+                            <excludeFilterFile>${basedir}/src/main/resources/findbugs-exclude-filter.xml</excludeFilterFile>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>compile</phase>
+                                <goals>
+                                    <goal>check</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
     </profiles>
 
 
