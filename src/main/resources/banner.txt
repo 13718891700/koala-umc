@@ -5,5 +5,5 @@ ____  ___.__               .____    .__               .____
  /     \ |  |   |  \/ /_/  >    |___|  |   |  \/ /_/  >    |__(  <_> )   /\  ___/
 /___/\  \|__|___|  /\___  /|_______ \__|___|  /\___  /|_______ \____/ \_/  \___  >
       \_/        \//_____/         \/       \//_____/         \/               \/
-${AnsiColor.BRIGHT_BLUE}
+${AnsiColor.DEFAULT}
 ::: Project (version:${application.version}) :::    ＼(^O^)／    Spring-Boot ${spring-boot.version}

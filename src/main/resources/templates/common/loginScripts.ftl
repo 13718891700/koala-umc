@@ -9,6 +9,7 @@
 <script src="/assets/plugins/bootstrap-datetimepicker-master/js/bootstrap-datetimepicker.js" type="text/javascript" charset="UTF-8"></script>
 <script src="/assets/plugins/bootstrap-datetimepicker-master/js/locales/bootstrap-datetimepicker.zh-CN.js" type="text/javascript" charset="UTF-8"></script>
 <script src="/assets/plugins/sweetalert/sweetalert.min.js"></script>
+<script src="/js/customJs.js"></script>
 <#--加密js-->
 <script type="text/javascript" src="/assets/plugins/brix-crypto-js/crypto-js.js"></script>
 <script type="text/javascript" src="/assets/plugins/brix-crypto-js/cipher.js"></script>

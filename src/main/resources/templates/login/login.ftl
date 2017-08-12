@@ -24,7 +24,7 @@
       <div class="input-icon">
         <i class="fa fa-user"></i>
         <input class="form-control placeholder-no-fix" type="text" autocomplete="off" placeholder="用户名"
-               name="username" value=""/>
+               name="username" id="username" value=""/>
       </div>
     </div>
     <div class="form-group">
@@ -32,7 +32,7 @@
       <div class="input-icon">
         <i class="fa fa-lock"></i>
         <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="密码"
-               name="password" value=""/>
+               name="password" id="password" value=""/>
       </div>
     </div>
     <div class="row">
@@ -487,10 +487,30 @@
       swal("验证码不能为空！");
       return false;
     }
-    //验证码正确，进行提交操作
-    $("#login-form").attr("action", "/login");
-    $("#login-form").submit();
+
+    var formData = {
+      username: $("#username").val(),
+      password: $("#password").val()
+    };
+    doLogin(formData);
+
   });
+
+  function doLogin(loginData) {
+    $.ajax({
+      url: "/login",
+      type: "POST",
+      data: JSON.stringify(loginData),
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+      success: function (data, textStatus, jqXHR) {
+        setJwtToken(data.token);
+        window.location.href = "/showBackStage";
+      },
+      error: function (jqXHR, textStatus, errorThrown) {
+      }
+    });
+  }
 </script>
 </body>
 </html>

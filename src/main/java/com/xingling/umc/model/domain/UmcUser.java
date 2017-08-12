@@ -5,13 +5,13 @@ import lombok.Data;
 
 import javax.persistence.Column;
 import javax.persistence.Table;
+import javax.persistence.Transient;
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @Table(name = "xl_user")
-public class UmcUser extends BaseEntiy{
-
-
+public class UmcUser extends BaseEntiy implements Serializable {
 
 	/**
 	 * 用户名
@@ -83,5 +83,12 @@ public class UmcUser extends BaseEntiy{
 	 */
 	@Column(name = "last_login_date")
 	private Date  lastLoginDate;
+
+	@Transient
+	private Boolean enabled;
+
+	@Transient
+	private Date lastPasswordResetDate;
+
 
 }
