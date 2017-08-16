@@ -490,7 +490,8 @@
 
     var formData = {
       username: $("#username").val(),
-      password: $("#password").val()
+      password: $("#password").val(),
+      kaptcha: $("#kaptcha").val()
     };
     doLogin(formData);
 

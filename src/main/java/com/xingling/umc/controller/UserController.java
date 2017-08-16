@@ -3,7 +3,7 @@ package com.xingling.umc.controller;
 import com.github.pagehelper.Page;
 import com.xingling.controller.BaseController;
 import com.xingling.exception.BusinessException;
-import com.xingling.umc.model.domain.UmcUser;
+import com.xingling.umc.model.domain.User;
 import com.xingling.umc.service.UserService;
 import com.xingling.wrap.WrapMapper;
 import com.xingling.wrap.Wrapper;
@@ -42,8 +42,8 @@ public class UserController extends BaseController{
 
 	@ResponseBody
     @RequestMapping(value = "/queryUserListWithPage", method= RequestMethod.GET)
-    public Wrapper<?> queryUserListWithPage(Page<UmcUser> page, UmcUser user) {
-        List<UmcUser> userList;
+    public Wrapper<?> queryUserListWithPage(Page<User> page, User user) {
+        List<User> userList;
         try {
             userList = userService.selectAll();
         } catch (BusinessException ex) {

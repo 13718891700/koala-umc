@@ -1,7 +1,7 @@
 package com.xingling.umc.service;
 
 import com.xingling.service.BaseService;
-import com.xingling.umc.model.domain.UmcUser;
+import com.xingling.umc.model.domain.User;
 
 /**
  * <p>Title:	  UserService <br/> </p>
@@ -11,7 +11,7 @@ import com.xingling.umc.model.domain.UmcUser;
  * @Author <a href="190332447@qq.com"/>杨文生</a>  <br/>
  * @Date 2017/5/15 13:49
  */
-public interface UserService extends BaseService<UmcUser> {
+public interface UserService extends BaseService<User> {
 
 	/**
 	 * <p>Title:	  selectUserByUserName. </p>
@@ -20,7 +20,7 @@ public interface UserService extends BaseService<UmcUser> {
 	 * @param
 	 * @Author        <a href="190332447@qq.com"/>杨文生</a>
 	 * @CreateDate    2017/6/10 14:16
-	 * @return        UmcUser
+	 * @return        User
 	 */
-	UmcUser selectUserByUserName(String username);
+	User selectUserByUserName(String username);
 }

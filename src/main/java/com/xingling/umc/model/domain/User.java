@@ -11,7 +11,7 @@ import java.util.Date;
 
 @Data
 @Table(name = "xl_user")
-public class UmcUser extends BaseEntiy implements Serializable {
+public class User extends BaseEntiy implements Serializable {
 
 	/**
 	 * 用户名
@@ -89,6 +89,8 @@ public class UmcUser extends BaseEntiy implements Serializable {
 
 	@Transient
 	private Date lastPasswordResetDate;
+
+	/*private List<Role> roles;*/
 
 
 }

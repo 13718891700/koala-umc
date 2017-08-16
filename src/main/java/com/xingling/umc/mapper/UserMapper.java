@@ -2,7 +2,7 @@ package com.xingling.umc.mapper;
 
 
 import com.xingling.mapper.MyMapper;
-import com.xingling.umc.model.domain.UmcUser;
+import com.xingling.umc.model.domain.User;
 
 /**
  * <p>Title:	  koala-umc <br/> </p>
@@ -12,7 +12,7 @@ import com.xingling.umc.model.domain.UmcUser;
  * @Author <a href="190332447@qq.com"/>杨文生</a>  <br/>
  * @Date 2017/5/15 13:50
  */
-public interface UserMapper extends MyMapper<UmcUser> {
+public interface UserMapper extends MyMapper<User> {
 
-	UmcUser selectUserByUserName(String username);
+	User selectUserByUserName(String username);
 }
