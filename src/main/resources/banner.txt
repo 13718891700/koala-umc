@@ -7,3 +7,4 @@ ____  ___.__               .____    .__               .____
       \_/        \//_____/         \/       \//_____/         \/               \/
 ${AnsiColor.DEFAULT}
 ::: Project (version:${application.version}) :::    ＼(^O^)／    Spring-Boot ${spring-boot.version}
+光帅收到了么
